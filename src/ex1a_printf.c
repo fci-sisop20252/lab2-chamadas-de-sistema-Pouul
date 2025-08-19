@@ -1,4 +1,4 @@
-/*
+    /*
  * Exercício 1a - Observando printf()
  * 
  * OBJETIVO: Entender como printf() se comporta com strace
