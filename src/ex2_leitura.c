@@ -14,7 +14,7 @@
 #include <stdio.h>    // Para printf() e perror()
 #include <errno.h>    // Para códigos de erro
 
-#define BUFFER_SIZE 128
+#define BUFFER_SIZE 10
 
 int main() {
     char buffer[BUFFER_SIZE];
@@ -27,7 +27,7 @@ int main() {
      * TODO 1: Abrir o arquivo 'dados/teste1.txt' para leitura
      * Use open() com O_RDONLY
      */
-    fd = open(dados/teste1.txt, O_RDONLY);
+    fd = open("dados/teste.txt", O_RDONLY);
     
     /*
      * TODO 2: Verificar se a abertura foi bem-sucedida
@@ -44,12 +44,12 @@ int main() {
      * TODO 3: Ler dados do arquivo
      * Use read() para ler até (BUFFER_SIZE - 1) bytes
      */
-    bytes_lidos = read();
+    bytes_lidos = read(fd,buffer,(BUFFER_SIZE - 1));
     
     /*
      * TODO 4: Verificar se a leitura foi bem-sucedida
      */
-    if (/* COMPLETE AQUI */) {
+    if (bytes_lidos < 0) {
         perror("Erro na leitura");
         close(fd);
         return 1;
@@ -59,7 +59,7 @@ int main() {
      * TODO 5: Adicionar terminador nulo
      * Para tratar o buffer como string
      */
-    /* COMPLETE AQUI */;
+    buffer[bytes_lidos] = '\0';
     
     // Exibir resultados
     printf("Bytes lidos: %ld\n", bytes_lidos);
@@ -69,7 +69,7 @@ int main() {
      * TODO 6: Fechar o arquivo
      * Use close() para liberar o file descriptor
      */
-    if (/* COMPLETE AQUI */) {
+    if (close(fd) == -1) {
         perror("Erro ao fechar arquivo");
         return 1;
     }

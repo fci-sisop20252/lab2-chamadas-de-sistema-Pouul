@@ -33,8 +33,8 @@ Printf é uma forma mais rápido para fazer saída , por ser mais simples e usa 
 ## Exercício 2 - Leitura de Arquivo
 
 ### Resultados da execução:
-- File descriptor: _____
-- Bytes lidos: _____
+- File descriptor: 3
+- Bytes lidos: 127
 
 ### Comando strace:
 ```bash
@@ -46,13 +46,13 @@ strace -e open,read,close ./ex2_leitura
 **1. Por que o file descriptor não foi 0, 1 ou 2?**
 
 ```
-[Sua análise aqui]
+Porque são fd especificados para stdin,standardin,stdout,standardout,stderr,standarderror.
 ```
 
 **2. Como você sabe que o arquivo foi lido completamente?**
 
 ```
-[Sua análise aqui]
+Não deu bug ao ler buffer size - 1 , e o próprio texto informa isso.
 ```
 
 ---
