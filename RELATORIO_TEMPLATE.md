@@ -69,23 +69,23 @@ Não deu bug ao ler buffer size - 1 , e o próprio texto informa isso.
 
 | Buffer Size | Chamadas read() | Tempo (s) |
 |-------------|-----------------|-----------|
-| 16          |                 |           |
-| 64          |                 |           |
-| 256         |                 |           |
-| 1024        |                 |           |
+| 16          |        83       | 0.000215  |
+| 64          |        21       | 0.000119  |
+| 256         |         6       | 0.000079  |
+| 1024        |         2       | 0.000067  |
 
 ### Análise
 
 **1. Como o tamanho do buffer afeta o número de syscalls?**
 
 ```
-[Sua análise aqui]
+Quando maior o buffer menor é a quantidade de reads,syscall para leitura.
 ```
 
 **2. Como você detecta o fim do arquivo?**
 
 ```
-[Sua análise aqui]
+Enquando Read não retornar 0 ou -1 , existe dados no arquivo.
 ```
 
 ---
