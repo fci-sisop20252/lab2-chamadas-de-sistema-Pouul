@@ -60,10 +60,10 @@ Não deu bug ao ler buffer size - 1 , e o próprio texto informa isso.
 ## Exercício 3 - Contador com Loop
 
 ### Resultados (BUFFER_SIZE = 64):
-- Linhas: _____ (esperado: 25)
-- Caracteres: _____
-- Chamadas read(): _____
-- Tempo: _____ segundos
+- Linhas: 25 (esperado: 25)
+- Caracteres: 1300
+- Chamadas read(): 21
+- Tempo: 0.000109 segundos
 
 ### Experimentos com buffer:
 
@@ -93,29 +93,29 @@ Enquando Read não retornar 0 ou -1 , existe dados no arquivo.
 ## Exercício 4 - Cópia de Arquivo
 
 ### Resultados:
-- Bytes copiados: _____
-- Operações: _____
-- Tempo: _____ segundos
-- Throughput: _____ KB/s
+- Bytes copiados: 1364
+- Operações: 6
+- Tempo: 0.000184 segundos
+- Throughput: 7239.30 KB/s
 
 ### Verificação:
 ```bash
 diff dados/origem.txt dados/destino.txt
 ```
-Resultado: [ ] Idênticos [ ] Diferentes
+Resultado: [x] Idênticos [ ] Diferentes
 
 ### Análise
 
 **1. Por que devemos verificar que bytes_escritos == bytes_lidos?**
 
 ```
-[Sua análise aqui]
+Para não tar erro na escrita, se o número de bytes escritos é diferente do que foi lido , não foi escrito tudo.
 ```
 
 **2. Que flags são essenciais no open() do destino?**
 
 ```
-[Sua análise aqui]
+O_CREAT para criar um arquivo inexistênte,O_TRUNC para truncado o arquivo todas as vezes que o programa entra em processo.
 ```
 
 ---
@@ -127,19 +127,19 @@ Resultado: [ ] Idênticos [ ] Diferentes
 **1. Como as syscalls demonstram a transição usuário → kernel?**
 
 ```
-[Sua análise aqui]
+As chamadas de sistema são uma resposta direta do pedido do usuário , os pedidos são transformado para línguagem de máquina e executado.
 ```
 
 **2. Qual é o seu entendimento sobre a importância dos file descriptors?**
 
 ```
-[Sua análise aqui]
+fd é um ponteiro responsável por determinar local que um certo função irá atuar. 
 ```
 
 **3. Discorra sobre a relação entre o tamanho do buffer e performance:**
 
 ```
-[Sua análise aqui]
+Quando maior for o buffer menos chamdas de read são necessario , mais rápido fica o processo.
 ```
 
 ### Comparação de Performance
@@ -150,12 +150,12 @@ time ./ex4_copia
 time cp dados/origem.txt dados/destino_cp.txt
 ```
 
-**Qual foi mais rápido?** _____
+**Qual foi mais rápido?** cp do sistema,deu resultado diferentes e as vezes iguais,gpt falou que é mais rápido.
 
 **Por que você acha que foi mais rápido?**
 
 ```
-[Sua análise aqui]
+Tiveram resultados semelhantes , porque em certos partes tiveram uso de funções altamente otimizado como read e open, mas teve uso de printf que é pior que write em velocidade, então creio que cp seja mais rápido
 ```
 
 ---
